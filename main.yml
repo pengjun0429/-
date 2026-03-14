@@ -1,0 +1,12 @@
+name: Continuous Request
+on:
+  schedule:
+    - cron: '*/5 * * * *' # 每 5 分鐘執行一次
+  workflow_dispatch:
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Request
+        run: curl -L "你的 Google Apps Script 網址"
