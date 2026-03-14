@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>連續請求工具</title>
+</head>
+<body>
+    <h2>請求發送器</h2>
+    <p>狀態: <span id="status">等待中</span></p>
+    <button onclick="start()">開始</button>
+    <button onclick="stop()">停止</button>
+
+    <script>
+        let timer;
+        const url = "https://script.googleusercontent.com/macros/echo?user_content_key=AY5xjrRdgORPw1pxmJMDdUrFDvJ8IEdHRDCw7tzTDeDLBAJTUm91yiIj5MCF3z9UkELmbPY-ggE7gLwm47HJyrV_wfv0NijuCtEknC_qb7pm88sgMqA1yuw80C9Db6YHHd1KIUGLtuuYL_OY1HTD7OQQkADlV0135kKo43DWTZX5s65qiGwWWvNt9R7JuuEll0Cl8kXUn41lJZODN8ilT-pv-scwLWkngXLYIqBMnEGGY84saHkuUpwz60DolI34KEpq70GABS9vXsYMzS7D5FDrNW_VwfvTug&lib=MYodTPhmRI_FB9faRqG7YR8ZIwEhK4DF3";
+
+        function start() {
+            document.getElementById("status").innerText = "執行中";
+            timer = setInterval(() => {
+                fetch(url, { mode: 'no-cors' })
+                .then(() => console.log("發送成功: " + new Date().toLocaleTimeString()));
+            }, 3000); // 每 3 秒發送一次
+        }
+
+        function stop() {
+            clearInterval(timer);
+            document.getElementById("status").innerText = "已停止";
+        }
+    </script>
+</body>
+</html>
